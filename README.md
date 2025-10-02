@@ -1,35 +1,21 @@
 # song-vue
 
-This template should help get you started developing with Vue 3 in Vite.
+## Configuração recomendada de IDE
 
-## Recommended IDE Setup
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (e desative o Vetur).
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Configuração do projeto
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Compilar e recarregar automaticamente para desenvolvimento
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+## Diagrama de Models do Projeto
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+![Diagrama de Models do Projeto](./docs/song.png)
