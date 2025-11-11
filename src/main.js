@@ -14,6 +14,8 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+console.log('VITE_API_BASE_URL (verificação) =', import.meta.env.VITE_API_BASE_URL)
+
 function getBrowserLanguage() {
   const language = navigator.language || navigator.userLanguage
   return language.split('-')[0]

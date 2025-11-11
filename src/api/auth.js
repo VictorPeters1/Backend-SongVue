@@ -2,38 +2,42 @@ import api from './axiosConfig'
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
 
+// Login
 export const loginUser = async (username, password) => {
   try {
     const response = await api.post('authentication/token', {
-      username: username,
-      password: password
+      username,
+      password
     })
 
     const token = response.data.access
     Cookies.set('authToken', token, { expires: 1 })
     return response.data
   } catch (error) {
-    console.error('Erro durante a autenticação:', error)
+    console.error('Erro no login:', error)
     throw error
   }
 }
 
+// Registro
 export const createUser = async (userData) => {
-  return await api.post('authentication/users', userData)
+  try {
+    const response = await api.post('authentication/users', userData)
+    return response.data
+  } catch (error) {
+    console.error('Erro ao criar usuário:', error)
+    throw error
+  }
 }
 
-export const getUserInfoFromToken = async () => {
+export const getUserInfoFromToken = () => {
   const token = Cookies.get('authToken')
-  if (token) {
-    try {
-      const decodedToken = jwtDecode(token)
-      const userInfo = {
-        userId: decodedToken.user_id,
-        username: decodedToken.username
-      }
-      return userInfo
-    } catch (error) {
-      console.error('Token inválido ou erro ao decodificar', error)
-    }
+  if (!token) return null
+
+  try {
+    return jwtDecode(token)
+  } catch (error) {
+    console.error('Token inválido:', error)
+    return null
   }
 }
