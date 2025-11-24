@@ -15,8 +15,13 @@ export const fetchReviews = async () => {
 // LISTAR reviews do usuário logado
 export const fetchReviewsByUser = async () => {
   try {
-    const userInfo = await getUserInfoFromToken()
-    const response = await api.get(`reviews?user=${userInfo.userId}`)
+    const userInfo = getUserInfoFromToken()
+
+    if (!userInfo) {
+      throw new Error("Usuário não está logado")
+    }
+
+    const response = await api.get(`reviews?user=${userInfo.user_id}`)
     return response.data
   } catch (error) {
     console.error('Erro ao buscar reviews do usuário:', error)
@@ -27,7 +32,17 @@ export const fetchReviewsByUser = async () => {
 // CRIAR review
 export const createReview = async (reviewData) => {
   try {
-    const response = await api.post('reviews', reviewData)
+    const userInfo = getUserInfoFromToken()
+
+    if (!userInfo) {
+      throw new Error("Usuário não está logado")
+    }
+
+    const response = await api.post('reviews', {
+      ...reviewData,
+      user_id: userInfo.user_id
+    })
+
     return response.data
   } catch (error) {
     console.error('Erro ao criar review:', error)

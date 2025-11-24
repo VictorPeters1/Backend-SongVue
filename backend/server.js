@@ -58,8 +58,17 @@ app.post("/authentication/users", async (req, res) => {
   data.users.push(newUser);
   writeData(data);
 
-  res.status(201).json({ message: "Usuário criado com sucesso", user: newUser });
+  const userResponse = {
+    id: newUser.id,
+    username: newUser.username
+  };
+
+  res.status(201).json({
+    message: "Usuário criado com sucesso",
+    user: userResponse
+  });
 });
+
 
 // Login de usuário
 app.post("/authentication/token", async (req, res) => {
@@ -204,10 +213,26 @@ app.post("/genres/", (req, res) => {
 // -----------------------------
 // REVIEWS 
 // -----------------------------
-app.get("/reviews/", (req, res) => {
+app.get("/reviews", (req, res) => {
   const data = readData();
-  res.json(data.reviews);
+
+  const userId = parseInt(req.query.user || req.query.userId);
+
+  let reviews = data.reviews.map(r => {
+    return {
+      ...r,
+      song: data.songs.find(s => s.id === r.song),
+      user: data.users.find(u => u.id === r.user_id)
+    };
+  });
+
+  if (!isNaN(userId)) {
+    reviews = reviews.filter(r => r.user_id === userId);
+  }
+
+  res.json(reviews);
 });
+
 
 app.post("/reviews/", (req, res) => {
   const data = readData();
