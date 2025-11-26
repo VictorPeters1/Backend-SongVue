@@ -1,0 +1,95 @@
+{
+  "songs": [
+    {
+      "id": 1,
+      "title": "Imagine",
+      "artists": [
+        {
+          "id": 1,
+          "name": "John Lennon"
+        }
+      ],
+      "genre": {
+        "id": 1,
+        "name": "Rock"
+      },
+      "release_date": "1971-10-11",
+      "rate": 4.8
+    },
+    {
+      "id": 2,
+      "title": "No Surprises",
+      "artists": [
+        {
+          "id": 2,
+          "name": "Radiohead"
+        }
+      ],
+      "genre": {
+        "id": 2,
+        "name": "Alternative"
+      },
+      "release_date": "1997-06-16",
+      "rate": 4.6
+    }
+  ],
+  "artists": [
+    {
+      "id": 1,
+      "name": "John Lennon",
+      "birthday": "1940-10-09",
+      "nationality": "British"
+    },
+    {
+      "id": 2,
+      "name": "Radiohead",
+      "birthday": "1985-01-01",
+      "nationality": "British"
+    },
+    {
+      "id": 3,
+      "name": "Eminem",
+      "birthday": "1972-10-17",
+      "nationality": "USA"
+    }
+  ],
+  "genres": [
+    {
+      "id": 1,
+      "name": "Rock"
+    },
+    {
+      "id": 2,
+      "name": "Alternative"
+    },
+    {
+      "id": 3,
+      "name": "Pop"
+    },
+    {
+      "id": 4,
+      "name": "Rap"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 4,
+      "song": 1,
+      "comment": "teste",
+      "stars": 1,
+      "user_id": 3
+    }
+  ],
+  "users": [
+    {
+      "id": 3,
+      "username": "Peters",
+      "password": "$2b$10$Ehkts1li1Eg5huYsNRxyyuI5b3JyJNsdQjbK8m98gPqj4UvLxjx2G"
+    }
+  ],
+  "nextSongId": 6,
+  "nextArtistId": 4,
+  "nextGenreId": 5,
+  "nextReviewId": 5,
+  "nextUserId": 4
+}
