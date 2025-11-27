@@ -246,11 +246,20 @@ app.put("/reviews/:id", (req, res) => {
   const data = readData();
   const id = parseInt(req.params.id);
   const index = data.reviews.findIndex((r) => r.id === id);
-  if (index === -1) return res.status(404).json({ error: "Review não encontrada" });
 
-  data.reviews[index] = { ...data.reviews[index], ...req.body };
+  if (index === -1)
+    return res.status(404).json({ error: "Review não encontrada" });
+
+  const updated = {
+    ...data.reviews[index],
+    stars: req.body.stars,
+    comment: req.body.comment
+  };
+
+  data.reviews[index] = updated;
   writeData(data);
-  res.json(data.reviews[index]);
+
+  res.json(updated);
 });
 
 app.delete("/reviews/:id", (req, res) => {
